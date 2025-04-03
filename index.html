@@ -17,13 +17,14 @@
         this.filtros.addFiltro('Super Poblados', (e) => e.population > 100000000);
         //fin de filtro consigna 1 ok
 
-        //filtro agregado paises que no tienen fronteras (borders)
-        this.filtros.addFiltro('Insulares', (e) => e.borders.len() > 0);
-        //fin de filtro consigna 2 a revisar
+        //filtro agregado paises que no tienen fronteras (borders== nulos)"con undefined tambien funciona"
+        this.filtros.addFiltro('Insulares', (e) => e.borders == null);
+        //fin de filtro consigna 2 ok
 
         //filtro agregado paises que incluyen el Guarani entre sus idiomas
-        this.filtros.addFiltro('De habla Guarani', (e) => e.languages.includes('gnr'));
-        //fin de filtro consigna 3 a revisar
+        //this.filtros.addFiltro('De habla Guarani', (e) => e.languages.includes('gnr'));
+        this.filtros.addFiltro('De habla Guaraní', (e) => e.languages && Object.keys(e.languages).includes("grn"));
+        //fin de filtro consigna 3 a revisar// corregido por brendalera, ver de realizar con reduce.
 
         const selectElement = document.getElementById('paises-select');
         const filtrosDisponibles = this.filtros.getFiltros()
